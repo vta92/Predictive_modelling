@@ -1,6 +1,14 @@
 # python 3
 import numpy as np
 import matplotlib.pyplot as plt
+import sklearn.cluster
+import sklearn.preprocessing
+
+
+
+
+
+
 #n is the size of our data set, with k clusters
 def createData(n,k):
     np.random.seed(2)
@@ -19,6 +27,21 @@ def createData(n,k):
     result = np.array(result)
     return result
 
-data = createData(1000,3)
+if __name__ == "__main__":
+    data = createData(1000,4)
+    #plt.scatter(data.transpose()[1], data.transpose()[0])
+    model = sklearn.cluster.KMeans(n_clusters = 3)   #init 3 centroids
+    model = model.fit(sklearn.preprocessing.scale(data)) #data scaling due to differences between age/inc
+    print(model.labels_) #looking at the clusters each data assigned to
+    print(model.cluster_centers_)   #looking at the coordinates of the centroids
+    
 
-#plt.scatter(data.transpose()[1], data.transpose()[0])
+    centroids = model.cluster_centers_
+    plt.scatter(centroids[:, 0], centroids[:, 1],
+            marker='x', s=169, linewidths=3,
+            color='w', zorder=10)
+
+    plt.scatter(data[:,0], data[:,1], c= model.labels_.astype(float))
+    plt.scatter(x_cen,y_cen)
+#    plt.scatter()
+    plt.show()
