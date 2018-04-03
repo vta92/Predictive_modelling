@@ -1,4 +1,5 @@
 # python 3
+#need to revisit and plot the centroids
 import numpy as np
 import matplotlib.pyplot as plt
 import sklearn.cluster
