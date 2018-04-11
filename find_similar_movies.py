@@ -18,7 +18,7 @@ movies_ratings = db.pivot_table(index=['User ID'],
 #print(movies_ratings.isnull().sum())
 
 
-#correlations with all other movies from 1 specific movies
+#correlations with all other movies from 1 specific movies (columns)
 similar_movies = movies_ratings.corrwith(movies_ratings['Dumbo (1941)'])
 similar_movies = similar_movies.dropna().sort_values(ascending = False)
 
